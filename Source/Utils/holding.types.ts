@@ -14,3 +14,10 @@ export interface IUserHolding {
 export interface IHoldingsData {
   data: IUserHolding
 }
+
+export interface IPortfolio {
+  currentValue: number
+  totalInvestment: number
+  daysPL: number
+  lifetimePL: number
+}

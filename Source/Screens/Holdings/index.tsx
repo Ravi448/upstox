@@ -55,7 +55,7 @@ const UserHoldings = (props: Props) => {
         keyExtractor={item => item.symbol}
         contentContainerStyle={styles.listContainer}
       />
-      <BottomSheet />
+      {holdings && <BottomSheet allStocks={holdings} />}
     </Body>
   );
 };
