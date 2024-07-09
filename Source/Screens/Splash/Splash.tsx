@@ -1,26 +1,30 @@
 import React, {useEffect} from 'react';
 import Logo from '@app/Components/Views/Logo';
-import SectionView from '@app/Components/Views/SectionView';
-import {useNavigation} from '@react-navigation/native';
+import Body from '@app/Components/Views/Body';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-const Splash = () => {
-  const {reset} = useNavigation();
+type RootParam = {
+  Splash?: any;
+};
 
+type Props = NativeStackScreenProps<RootParam, 'Splash'>;
+
+const Splash = (props: Props) => {
   useEffect(() => {
     setTimeout(navigateToHoldings, 2000);
   }, []);
 
   const navigateToHoldings = (): void => {
-    reset({
+    props.navigation.reset({
       index: 0,
       routes: [{name: 'Holding' as never}],
     });
   };
 
   return (
-    <SectionView flexed justify="center" alignItem="center">
+    <Body flexed justify="center" alignItem="center">
       <Logo />
-    </SectionView>
+    </Body>
   );
 };
 

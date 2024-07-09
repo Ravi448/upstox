@@ -9,7 +9,7 @@ export const DefaultTheme = {
     scale: 1.5
   },
   colors: {
-    primary: "rgb(102, 35, 255)",
+    primary: "rgb(62,25,87)",
     onPrimary: "rgb(255, 255, 255)",
     primaryContainer: "rgb(231, 222, 255)",
     onPrimaryContainer: "rgb(31, 0, 96)",
@@ -17,11 +17,11 @@ export const DefaultTheme = {
     onSecondary: "rgb(255, 255, 255)",
     secondaryContainer: "rgb(224, 224, 255)",
     onSecondaryContainer: "rgb(0, 4, 106)",
-    tertiary: "rgb(121, 89, 0)",
+    tertiary: "#53d769",
     onTertiary: "rgb(255, 255, 255)",
     tertiaryContainer: "rgb(255, 223, 160)",
     onTertiaryContainer: "rgb(38, 26, 0)",
-    error: "rgb(186, 26, 26)",
+    error: "#fc3158",
     onError: "rgb(255, 255, 255)",
     errorContainer: "rgb(255, 218, 214)",
     onErrorContainer: "rgb(65, 0, 2)",
@@ -49,7 +49,8 @@ export const DefaultTheme = {
     surfaceDisabled: "rgba(28, 27, 30, 0.12)",
     onSurfaceDisabled: "rgba(28, 27, 30, 0.38)",
     backdrop: "rgba(50, 47, 56, 0.4)",
-    text: "#232323"
+    text: "#232323",
+    success: "#53d769"
   },
   fonts: {
     regular: {

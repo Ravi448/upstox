@@ -11,7 +11,7 @@ const Body = (props: BodyProps) => {
 
   return (
     <>
-      <StatusBar barStyle="dark-content" backgroundColor={backgroundColor} />
+      <StatusBar barStyle="light-content" backgroundColor={backgroundColor} />
       {props.safeArea && <SafeAreaView />}
       <View
         style={[
