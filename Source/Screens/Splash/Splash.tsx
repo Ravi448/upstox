@@ -17,7 +17,7 @@ const Splash = (props: Props) => {
   const navigateToHoldings = (): void => {
     props.navigation.reset({
       index: 0,
-      routes: [{name: 'Holding' as never}],
+      routes: [{name: 'UserHoldings' as never}],
     });
   };
 

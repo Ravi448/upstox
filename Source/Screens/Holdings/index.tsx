@@ -1,15 +1,15 @@
 // UI of holding listing
-import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
+import {FlatList, StyleSheet, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import SectionView from '@app/Components/Views/SectionView';
 import {fetchHoldings} from '@app/Network/services/holding.service';
-import {IHoldings, IHoldingsData, IUserHolding} from '@app/Utils/holding.types';
+import {IHoldings, IUserHolding} from '@app/Utils/holding.types';
 import {APIResponse} from '@app/Network/core/responseParser';
 import TxText from '@app/Components/Typography/TxText';
 import HoldingCard from '@app/Components/Cards/HoldingCard';
 import Body from '@app/Components/Views/Body';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useAppTheme} from '@app/Themes';
+import BottomSheet from '@app/Components/Views/BottomSheet';
 
 type RootParam = {
   UserHoldings?: any;
@@ -28,7 +28,9 @@ const UserHoldings = (props: Props) => {
       headerTitleStyle: {
         color: colors.background,
       },
-      headerBackground: () => <SectionView flexed bgColor="primary" />,
+      headerStyle: {
+        backgroundColor: colors.primary,
+      },
       headerLeft: () => (
         <Image
           source={require('@app/Resources/Images/minilogo.jpeg')}
@@ -53,6 +55,7 @@ const UserHoldings = (props: Props) => {
         keyExtractor={item => item.symbol}
         contentContainerStyle={styles.listContainer}
       />
+      <BottomSheet />
     </Body>
   );
 };
@@ -62,6 +65,6 @@ export default UserHoldings;
 const styles = StyleSheet.create({
   listContainer: {
     paddingHorizontal: 16,
-    paddingBottom: 60,
+    paddingBottom: 100,
   },
 });

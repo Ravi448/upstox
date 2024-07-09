@@ -14,22 +14,25 @@ import Splash from './Source/Screens/Splash/Splash';
 import UserHoldings from './Source/Screens/Holdings';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {DefaultTheme} from '@app/Themes/default';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
   return (
     <PaperProvider theme={DefaultTheme}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Splash"
-            component={Splash}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen name="Holding" component={UserHoldings} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <GestureHandlerRootView style={{flex: 1}}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Splash"
+              component={Splash}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen name="UserHoldings" component={UserHoldings} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </PaperProvider>
   );
 }
