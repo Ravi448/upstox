@@ -1,6 +1,6 @@
 import { APIConfig } from "../config/serverConfig"
 
-export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"
+export type HttpMethod = "GET" | "POST"
 
 /**
  * @description API Router
@@ -23,17 +23,10 @@ export class APIRouter {
   }
 }
 
-export function urlBuilder(router: APIRouter, params: string[] | object): string {
+export function urlBuilder(router: APIRouter): string {
   let uri = ""
   if (typeof router.version === "string") {
     uri = `/${router.version}`
-  }
-  uri = uri.concat(router.endpoint)
-  // all params in form of uri/id1/id2/id3
-  if (Array.isArray(params)) {
-    for (let key of params) {
-      uri = uri.concat("/", key)
-    }
   }
   return uri
 }

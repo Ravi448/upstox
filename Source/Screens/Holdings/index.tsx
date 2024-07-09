@@ -1,5 +1,5 @@
 // UI of holding listing
-import {FlatList, StyleSheet, Image} from 'react-native';
+import {FlatList, StyleSheet, Image, RefreshControl} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {fetchHoldings} from '@app/Network/services/holding.service';
 import {IHoldings, IUserHolding} from '@app/Utils/holding.types';
@@ -10,6 +10,7 @@ import Body from '@app/Components/Views/Body';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useAppTheme} from '@app/Themes';
 import BottomSheet from '@app/Components/Views/BottomSheet';
+import FullScreenLoader from '@app/Components/Loader/FullScreenLoader';
 
 type RootParam = {
   UserHoldings?: any;
@@ -19,6 +20,8 @@ type Props = NativeStackScreenProps<RootParam, 'UserHoldings'>;
 
 const UserHoldings = (props: Props) => {
   const [holdings, setHoldings] = useState<Array<IHoldings>>();
+  const [isRefreshing, setRefreshing] = useState<boolean>(false);
+
   const {colors} = useAppTheme();
 
   useEffect(() => {
@@ -41,15 +44,29 @@ const UserHoldings = (props: Props) => {
     });
   }, []);
 
-  const fetchUserHoldings = async () => {
+  const fetchUserHoldings = async (): Promise<void> => {
     const response: APIResponse<IUserHolding> = await fetchHoldings();
     const res: IUserHolding = response.data as IUserHolding;
     setHoldings(res.userHolding);
   };
 
+  const refreshHoldings = async (): Promise<void> => {
+    setRefreshing(true);
+    await fetchUserHoldings();
+    setRefreshing(false);
+  };
+
   return (
     <Body flexed>
+      <FullScreenLoader visible={!holdings} />
       <FlatList
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshing}
+            onRefresh={refreshHoldings}
+            tintColor={colors.primary}
+          />
+        }
         data={holdings}
         renderItem={({item}) => <HoldingCard data={item} />}
         keyExtractor={item => item.symbol}

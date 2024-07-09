@@ -12,20 +12,15 @@ export default async function networkManager(router: APIRouter) {
   axios.defaults.baseURL = router.baseURL
   axios.defaults.timeout = TIMEOUT
   axios.defaults.headers.common["Content-Type"] = CONTENT_TYPE.JSON
-  axios.defaults.headers.common["Accept-Language"] = "en"
 
   //#region  Network Call
   /**
    * Asynchronous function that sends a request to an API and returns a promise that resolves to an APIResponse object.
    *
-   * @param body - The request body as a Record<string, any> object. Default is an empty object.
-   * @param params - The request parameters as an object or an array. Default is an empty object.
    * @returns A promise that resolves to an APIResponse object.
    */
-  async function request<T>(
-    params = {} || []
-  ): Promise<APIResponse<T>> {
-    const url = urlBuilder(router, params)
+  async function request<T>(): Promise<APIResponse<T>> {
+    const url = urlBuilder(router)
 
     try {
       const result = await axios.request({
