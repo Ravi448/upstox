@@ -1,14 +1,27 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React, {useEffect} from 'react';
+import Logo from '@app/Components/Views/Logo';
+import SectionView from '@app/Components/Views/SectionView';
+import {useNavigation} from '@react-navigation/native';
 
-type Props = {}
+const Splash = () => {
+  const {reset} = useNavigation();
 
-const Splash = (props: Props) => {
+  useEffect(() => {
+    setTimeout(navigateToHoldings, 2000);
+  }, []);
+
+  const navigateToHoldings = (): void => {
+    reset({
+      index: 0,
+      routes: [{name: 'Holding' as never}],
+    });
+  };
+
   return (
-    <View>
-      <Text>Splash</Text>
-    </View>
-  )
-}
+    <SectionView flexed justify="center" alignItem="center">
+      <Logo />
+    </SectionView>
+  );
+};
 
-export default Splash
+export default Splash;
